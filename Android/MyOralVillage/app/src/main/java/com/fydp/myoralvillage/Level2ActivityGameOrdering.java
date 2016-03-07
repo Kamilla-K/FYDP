@@ -285,6 +285,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public void checkAnswer() {
         int checkTotal=wrongBaskets.size()+numCorrect;
         if ((numCorrect!=4)&&(checkTotal==4)) {
+            Toast.makeText(Level2ActivityGameOrdering.this, " Wrong ", Toast.LENGTH_LONG).show();
             numWrong=0;
             // set bag of apples to visible
             for (int i=0; i<wrongAnswers.size(); i++) {
