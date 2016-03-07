@@ -22,7 +22,6 @@ import android.view.View.OnTouchListener;
 import android.widget.Toast;
 import android.view.View.DragShadowBuilder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -38,8 +37,6 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public int difficulty=0;
     List<TextView> wrongAnswers = new ArrayList<TextView>();
     List<TextView> wrongBaskets = new ArrayList<TextView>();
-    int[] randomNumbers = new int[4];
-    int[] orderedNumbers = new int[4];
 
     @SuppressLint("NewApi")
     @Override
@@ -80,6 +77,8 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public void generateSequence() {
         numCorrect = 0;
         numWrong = 0;
+        int[] randomNumbers = new int[4];
+        int[] orderedNumbers = new int[4];
 //        Random r = new Random();
 //        int randomNum = r.nextInt(problems[difficulty].length)-1;
 //        generate an array of random numbers if diffciulty is
@@ -192,7 +191,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //view dragged item is being dropped on
                         TextView dropTarget = (TextView) v;
                         //view being dragged and dropped
-                        TextView dropped =(TextView) view;
+                        TextView dropped = (TextView) view;
                         int number1 = Integer.valueOf(dropped.getText().toString());
                         int number2 = Integer.valueOf(dropTarget.getText().toString());
                         view.setVisibility(View.INVISIBLE);
@@ -201,7 +200,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //make it bold to highlight the fact that an item has been dropped
                         dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                         dropTarget.setTextColor(0xffffffff);
-                        dropTarget.setBackgroundResource(R.drawable.basket_1_peach_full);
+                        dropTarget.setBackgroundResource(R.drawable.basket_1_full);
                         //if an item has already been dropped here, there will be a tag
                         Object tag = dropTarget.getTag();
                         //if there is already an item here, set it back visible in its original place
@@ -229,9 +228,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                             wrongAnswers.add(dropped);
                             wrongBaskets.add(dropTarget);
                         }
-                        if (numCorrect+numWrong==4) {
-                            checkAnswer();
-                        }
+                        checkAnswer();
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     //no action necessary
@@ -302,10 +299,6 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                 b.setBackgroundResource(R.drawable.basket_1);
                 b.setOnDragListener(new ChoiceDragListener());
             }
-            optionView0.setText(String.valueOf(orderedNumbers[0]));
-            optionView1.setText(String.valueOf(orderedNumbers[1]));
-            optionView2.setText(String.valueOf(orderedNumbers[2]));
-            optionView3.setText(String.valueOf(orderedNumbers[3]));
             wrongBaskets.clear();
             wrongAnswers.clear();
         }
